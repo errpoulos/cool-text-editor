@@ -72,7 +72,16 @@ class PyText:
             self.set_window_title(self.filename)
 
     def save(self):
-        pass
+        if self.filename:
+            try:
+                textarea_content = self.textarea.get(1.0, tk.END)
+                with open(self.filename,"w") as f:
+                    f.write(textarea_content)
+            except Exception as e:
+                print(e)
+
+        else:
+            self.save_as()
 
     def save_as(self):
         try:
