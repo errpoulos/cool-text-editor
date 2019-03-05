@@ -6,10 +6,10 @@ class PyText:
         # Default title
         master.title("Untitled-pytext")
 
-        #Default canvas size
+        # Default canvas size
         master.geometry("1200x700")
 
-        #initialize textarea
+        # initialize textarea
         self.textarea = tk.Text(master)
 
         # initialize scrollbar
@@ -19,8 +19,8 @@ class PyText:
         self.textarea.configure(yscrollcommand=self.scroll.set)
 
         # constrain textarea and scroll to size of widget
-        self.textarea.pack(side=tk.LEFT)
-        self.scroll.pack(side=tk.RIGHT)
+        self.textarea.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        self.scroll.pack(side=tk.RIGHT, fill=tk.Y)
 
 
 if __name__ == "__main__":
