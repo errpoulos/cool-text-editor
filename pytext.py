@@ -51,8 +51,8 @@ class PyText:
             self.master.title("Untitled - PyText")
 
     def new_file(self):
-        self.textarea.delete(1.0,tk.END)
-        self.filename =None
+        self.textarea.delete(1.0, tk.END)
+        self.filename = None
         self.set_window_title()
 
     def open_file(self):
@@ -71,12 +71,28 @@ class PyText:
                 self.textarea.insert(1.0, f.read())
             self.set_window_title(self.filename)
 
-
     def save(self):
         pass
 
     def save_as(self):
-        pass
+        try:
+            new_file = filedialog.asksaveasfile(
+                initialfile="Untitled.txt",
+                defaultextension=".txt",
+                filetypes=[("All Files", "*.*"),
+                           ("Text Files", "*.txt"),
+                           ("Python Scripts", "*.py"),
+                           ("Markdown Documents", "*.md"),
+                           ("JavaScript Files", "*.js"),
+                           ("HTML Documents", "*.html"),
+                           ("CSS Documents", "*.css")])
+            textarea_content = self.textarea.get(1.0, tk.END)
+            with open(new_file, "W") as f:
+                f.write(textarea_content)
+            self.filename = new_file
+
+        except Exception as e:
+            print(e)
 
 
 if __name__ == "__main__":
