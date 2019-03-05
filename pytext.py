@@ -51,7 +51,9 @@ class PyText:
             self.master.title("Untitled - PyText")
 
     def new_file(self):
-        pass
+        self.textarea.delete(1.0,tk.END)
+        self.filename =None
+        self.set_window_title()
 
     def open_file(self):
         self.filename = filedialog.askopenfilename(
